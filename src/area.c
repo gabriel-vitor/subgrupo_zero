@@ -3,24 +3,21 @@
 #include <locale.h>
 #include <windows.h>
 
-// Função para converter metros quadrados para hectares
-float metrosParaHectares(float metrosQuadrados) {
-    return metrosQuadrados / 10000;
+// Funções para conversão entre unidades de área
+float metrosParaCentimetros(float metrosQuadrados) {
+    return metrosQuadrados * 10000;
 }
 
-// Função para converter metros quadrados para acres
-float metrosParaAcres(float metrosQuadrados) {
-    return metrosQuadrados / 4046.86;
+float metrosParaMilimetros(float metrosQuadrados) {
+    return metrosQuadrados * 1000000;
 }
 
-// Função para converter hectares para metros quadrados
-float hectaresParaMetros(float hectares) {
-    return hectares * 10000;
+float centimetrosParaMetros(float centimetrosQuadrados) {
+    return centimetrosQuadrados / 10000;
 }
 
-// Função para converter acres para metros quadrados
-float acresParaMetros(float acres) {
-    return acres * 4046.86;
+float milimetrosParaMetros(float milimetrosQuadrados) {
+    return milimetrosQuadrados / 1000000;
 }
 
 int main() {
@@ -32,10 +29,10 @@ int main() {
 
     printf("Conversor de Unidades de Área\n");
     printf("Escolha uma opção:\n");
-    printf("1 - Metros quadrados para Hectares\n");
-    printf("2 - Metros quadrados para Acres\n");
-    printf("3 - Hectares para Metros quadrados\n");
-    printf("4 - Acres para Metros quadrados\n");
+    printf("1 - Metros quadrados para Centímetros quadrados\n");
+    printf("2 - Metros quadrados para Milímetros quadrados\n");
+    printf("3 - Centímetros quadrados para Metros quadrados\n");
+    printf("4 - Milímetros quadrados para Metros quadrados\n");
     printf("Opção: ");
     scanf("%d", &opcao);
 
@@ -44,20 +41,20 @@ int main() {
 
     switch (opcao) {
         case 1:
-            resultado = metrosParaHectares(valor);
-            printf("%.2f metros quadrados equivalem a %.4f hectares.\n", valor, resultado);
+            resultado = metrosParaCentimetros(valor);
+            printf("%.2f metros quadrados equivalem a %.2f centímetros quadrados.\n", valor, resultado);
             break;
         case 2:
-            resultado = metrosParaAcres(valor);
-            printf("%.2f metros quadrados equivalem a %.4f acres.\n", valor, resultado);
+            resultado = metrosParaMilimetros(valor);
+            printf("%.2f metros quadrados equivalem a %.2f milímetros quadrados.\n", valor, resultado);
             break;
         case 3:
-            resultado = hectaresParaMetros(valor);
-            printf("%.4f hectares equivalem a %.2f metros quadrados.\n", valor, resultado);
+            resultado = centimetrosParaMetros(valor);
+            printf("%.2f centímetros quadrados equivalem a %.4f metros quadrados.\n", valor, resultado);
             break;
         case 4:
-            resultado = acresParaMetros(valor);
-            printf("%.4f acres equivalem a %.2f metros quadrados.\n", valor, resultado);
+            resultado = milimetrosParaMetros(valor);
+            printf("%.2f milímetros quadrados equivalem a %.6f metros quadrados.\n", valor, resultado);
             break;
         default:
             printf("Opção inválida!\n");
