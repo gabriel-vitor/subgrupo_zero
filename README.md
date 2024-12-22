@@ -1,1 +1,0 @@
-# subgrupo_zero
