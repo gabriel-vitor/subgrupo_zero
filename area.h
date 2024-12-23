@@ -1,7 +1,6 @@
 #ifndef AREA_H
 #define AREA_H 
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -112,7 +111,7 @@ void converterArea() {
 } while (continuar == 'S' || continuar == 's');
 
  printf("\nConversão concluída com sucesso!\n");
-    return 0;
+ 
 }
 
 #endif
