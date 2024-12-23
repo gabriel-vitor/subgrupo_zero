@@ -1,3 +1,7 @@
+#ifndef AREA_H
+#define AREA_H 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -34,7 +38,7 @@ float milimetrosParaCentimetros(float centimetrosQuadrados2) {
     return centimetrosQuadrados2 / 100;
 }
 
-int main() {
+void converterArea() {
     int opcao;
     float valor, resultado;
     char continuar;
@@ -110,3 +114,5 @@ int main() {
  printf("\nConversão concluída com sucesso!\n");
     return 0;
 }
+
+#endif
