@@ -1,4 +1,6 @@
 //Código desenvolvido pelo aluno: Lucas Carneiro de Araújo Lima. 
+#ifndef WATTS_H  
+#define WATTS_H  
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,7 +42,7 @@ float* conversor(int option, float value) {
     return converted_values;
 }
 
-int main() {
+void conversorWatts() {
     while (1) {
         int option = 0;
         float value = 0.0;
@@ -95,3 +97,4 @@ int main() {
 
     return 0;
 }
+#endif
