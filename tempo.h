@@ -3,8 +3,9 @@ O código pergunta ao usuário qual é a unidade de tempo e ele responde entre s
 minutos e horas, depois o usuário fornece a quantidade. Se for minutos o retorno será
 a quantidade de segundos e de horas que possuem na quantidade de minutos dada pelo usuário
 a mesma coisa acontece com segundos e horas, o programa fornece a quantidade das outras medidas*/
-#ifndef TEMPO_H  // Verifica se TEMPERATURA_H já foi definido para evitar redefinição.
-#define TEMPO_H  // Define o identificador TEMPERATURA_H.
+
+#ifndef TEMPO_H  // Verifica se TEMPO_H já foi definido para evitar redefinição.
+#define TEMPO_H  // Define o identificador TEMPO_H.
 
 #include <stdio.h>
 #include <string.h>
