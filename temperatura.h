@@ -1,67 +1,127 @@
-#ifndef TEMPERATURA_H  // Verifica se TEMPERATURA_H já foi definido para evitar redefinição.
-#define TEMPERATURA_H  // Define o identificador TEMPERATURA_H.
+// Código desenvolvido pelo aluno: Lucas Carneiro de Araújo Lima.
+#ifndef TEMPERATURA_H
+#define TEMPERATURA_H
 
-#include <stdio.h>  // Biblioteca padrão para entrada e saída.
+#include <stdio.h>
 
-// Função para conversão de temperatura
-void converterTemperatura() {
-    int opcao;         // Variável para armazenar a opção escolhida pelo usuário.
-    float temperatura; // Variável para armazenar a temperatura informada pelo usuário.
-    float resultado;   // Variável para armazenar o resultado da conversão.
+#define KELVIN_OFFSET 273.15
 
-    printf("\n--- Conversão de Temperaturas ---\n"); // Exibe o cabeçalho da seção.
-    printf("1. Celsius para Fahrenheit\n");         // Opção 1.
-    printf("2. Fahrenheit para Celsius\n");         // Opção 2.
-    printf("3. Celsius para Kelvin\n");             // Opção 3.
-    printf("4. Kelvin para Celsius\n");             // Opção 4.
-    printf("5. Fahrenheit para Kelvin\n");          // Opção 5.
-    printf("6. Kelvin para Fahrenheit\n");          // Opção 6.
-    printf("Digite sua escolha (1-6): ");           // Solicita a escolha do usuário.
-    scanf("%d", &opcao);                            // Lê a opção escolhida.
-
-                         // Lê a temperatura informada.
-
+float* conversorTemperaturas(int opcao, float temperatura) {
+    static float valores_convertidos[3] = {0, 0, 0};
     switch (opcao) {
-        case 1: // Celsius para Fahrenheit
-            printf("Digite a temperatura em Celsius: ");
-            scanf("%f", &temperatura);
-            resultado = (temperatura * 9.0 / 5.0) + 32.0;
-            printf("%.2f Celsius = %.2f Fahrenheit\n", temperatura, resultado);
+        case 7: // Celsius para Kelvin, Fahrenheit e Kelvin
+            valores_convertidos[0] = temperatura; // Celsius
+            valores_convertidos[1] = (temperatura * 9.0 / 5.0) + 32.0; // Fahrenheit
+            valores_convertidos[2] = temperatura + KELVIN_OFFSET; // Kelvin
             break;
-        case 2: // Fahrenheit para Celsius
-            printf("Digite a temperatura em Fahrenheit: ");
-            scanf("%f", &temperatura);
-            resultado = (temperatura - 32.0) * 5.0 / 9.0;
-            printf("%.2f Fahrenheit = %.2f Celsius\n", temperatura, resultado);
+        case 8: // Fahrenheit para Celsius, Kelvin e Celsius
+            valores_convertidos[0] = (temperatura - 32.0) * 5.0 / 9.0; // Celsius
+            valores_convertidos[1] = temperatura; // Fahrenheit
+            valores_convertidos[2] = ((temperatura - 32.0) * 5.0 / 9.0) + KELVIN_OFFSET; // Kelvin
             break;
-        case 3: // Celsius para Kelvin
-            printf("Digite a temperatura em Celsius: ");
-            scanf("%f", &temperatura);
-            resultado = temperatura + 273.15;
-            printf("%.2f Celsius = %.2f Kelvin\n", temperatura, resultado);
+        case 9: // Kelvin para Celsius, Fahrenheit e Kelvin
+            valores_convertidos[0] = temperatura - KELVIN_OFFSET; // Celsius
+            valores_convertidos[1] = ((temperatura - KELVIN_OFFSET) * 9.0 / 5.0) + 32.0; // Fahrenheit
+            valores_convertidos[2] = temperatura; // Kelvin
             break;
-        case 4: // Kelvin para Celsius
-            printf("Digite a temperatura em Kelvin: ");
+    }
+    return valores_convertidos;
+}
+
+void converterTemperatura() {
+    while (1) {
+        int opcao;
+        float temperatura;
+
+        printf("\n===== Conversor de Temperatura =====\n\n");
+        printf("Escolha uma das opções:\n");
+        printf("\t01 - Celsius para Fahrenheit\n");
+        printf("\t02 - Fahrenheit para Celsius\n");
+        printf("\t03 - Celsius para Kelvin\n");
+        printf("\t04 - Kelvin para Celsius\n");
+        printf("\t05 - Fahrenheit para Kelvin\n");
+        printf("\t06 - Kelvin para Fahrenheit\n");
+        printf("\t07 - Tabela de conversão para Celsius\n");
+        printf("\t08 - Tabela de conversão para Fahrenheit\n");
+        printf("\t09 - Tabela de conversão para Kelvin\n");
+        printf("\t0  - Sair\n\n");
+        printf("> Digite sua opção: ");
+        scanf("%d", &opcao);
+
+        if (opcao >= 1 && opcao <= 6) {
+            printf("> Digite a temperatura: ");
             scanf("%f", &temperatura);
-            resultado = temperatura - 273.15;
-            printf("%.2f Kelvin = %.2f Celsius\n", temperatura, resultado);
-            break;
-        case 5: // Fahrenheit para Kelvin
-            printf("Digite a temperatura em Fahrenheit: ");
+            float resultado;
+            switch (opcao) {
+                case 1:
+                    resultado = (temperatura * 9.0 / 5.0) + 32.0;
+                    printf("%.2f Celsius = %.2f Fahrenheit\n", temperatura, resultado);
+                    break;
+                case 2:
+                    resultado = (temperatura - 32.0) * 5.0 / 9.0;
+                    printf("%.2f Fahrenheit = %.2f Celsius\n", temperatura, resultado);
+                    break;
+                case 3:
+                    resultado = temperatura + KELVIN_OFFSET;
+                    printf("%.2f Celsius = %.2f Kelvin\n", temperatura, resultado);
+                    break;
+                case 4:
+                    resultado = temperatura - KELVIN_OFFSET;
+                    printf("%.2f Kelvin = %.2f Celsius\n", temperatura, resultado);
+                    break;
+                case 5:
+                    resultado = ((temperatura - 32.0) * 5.0 / 9.0) + KELVIN_OFFSET;
+                    printf("%.2f Fahrenheit = %.2f Kelvin\n", temperatura, resultado);
+                    break;
+                case 6:
+                    resultado = ((temperatura - KELVIN_OFFSET) * 9.0 / 5.0) + 32.0;
+                    printf("%.2f Kelvin = %.2f Fahrenheit\n", temperatura, resultado);
+                    break;
+            }
+        } else if (opcao >= 7 && opcao <= 9) {
+            printf("> Digite a temperatura: ");
             scanf("%f", &temperatura);
-            resultado = ((temperatura - 32.0) * 5.0 / 9.0) + 273.15;
-            printf("%.2f Fahrenheit = %.2f Kelvin\n", temperatura, resultado);
+            float* valores_convertidos = conversorTemperaturas(opcao, temperatura);
+
+            printf("\n+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------", 25, "-------------------------");
+
+            switch (opcao) {
+                case 7:
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    break;
+                case 8:
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    break;
+                case 9:
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    break;
+            }
+
+            printf("+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------", 25, "-------------------------");
+
+            printf("| %-23.4f | %-23.4f | %-23.4f |\n",
+                valores_convertidos[0], valores_convertidos[1], valores_convertidos[2]);
+
+            printf("+%.*s+%.*s+%.*s+\n\n",
+                25, "-------------------------", 25, "-------------------------", 25, "-------------------------");
+        } else if (opcao == 0) {
             break;
-        case 6: // Kelvin para Fahrenheit
-            printf("Digite a temperatura em Kelvin: ");
-            scanf("%f", &temperatura);
-            resultado = ((temperatura - 273.15) * 9.0 / 5.0) + 32.0;
-            printf("%.2f Kelvin = %.2f Fahrenheit\n", temperatura, resultado);
-            break;
-        default: // Caso inválido
+        } else {
             printf("Opção inválida!\n");
-            break;
+        }
+
+        printf("\nAperte ENTER para continuar...");
+        getchar();
+        getchar();
+        
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
     }
 }
 
-#endif // Finaliza a definição de CONVERSORES_H.
+#endif
