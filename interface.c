@@ -5,6 +5,8 @@
 #include "massa.h"
 #include "velocidade.h"
 #include "watts.h"
+#include "bytes.h"
+#include "metros.h"
 
 int main() {
     int escolha;
@@ -17,6 +19,8 @@ int main() {
         printf("4. Watts, kW, e CV\n");
         printf("5. Unidades de Área\n");
         printf("6. Unidades de Tempo\n");
+        printf("7. Conversor de Bytes\n");
+        printf("8. Conversor de Metros cúbicos\n");
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &escolha);
@@ -39,6 +43,12 @@ int main() {
                 break;
             case 6:
                 converterTempo();
+                break;
+            case 7:
+                converterBytes();
+                break;
+            case 8:
+                converterMetros();
                 break;
             case 0:
                 printf("Saindo do programa...\n");
