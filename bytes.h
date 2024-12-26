@@ -70,18 +70,18 @@ void conversorBytesMenu() {
             printf("\n> Digite o valor: ");
             scanf("%f",&value);
             switch(option) {
-                case 1: printf("\n>> %f B = %f KB\n\n",value,conversorBytes(1,value)[option]);break;
-                case 2: printf("\n>> %f B = %f MB\n\n",value,conversorBytes(1,value)[option]);break;
-                case 3: printf("\n>> %f B = %f GB\n\n",value,conversorBytes(1,value)[option]);break;
-                case 4: printf("\n>> %f KB = %f B\n\n",value,conversorBytes(2,value)[option-3]);break;
-                case 5: printf("\n>> %f KB = %f MB\n\n",value,conversorBytes(2,value)[option-3]);break;
-                case 6: printf("\n>> %f KB = %f GB\n\n",value,conversorBytes(2,value)[option-3]);break;
-                case 7: printf("\n>> %f MB = %f B\n\n",value,conversorBytes(2,value)[option-6]);break;
-                case 8: printf("\n>> %f MB = %f KB\n\n",value,conversorBytes(2,value)[option-6]);break;
-                case 9: printf("\n>> %f MB = %f GB\n\n",value,conversorBytes(2,value)[option-6]);break;
-                case 10: printf("\n>> %f GB = %f B\n\n",value,conversorBytes(2,value)[option-9]);break;
-                case 11: printf("\n>> %f GB = %f KB\n\n",value,conversorBytes(2,value)[option-9]);break;
-                case 12: printf("\n>> %f GB = %f MB\n\n",value,conversorBytes(2,value)[option-9]);break;
+                case 1: printf("\n>> %.4f B = %.4f KB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 2: printf("\n>> %.4f B = %.4f MB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 3: printf("\n>> %.4f B = %.4f GB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 4: printf("\n>> %.4f KB = %.4f B\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 5: printf("\n>> %.4f KB = %.4f MB\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 6: printf("\n>> %.4f KB = %.4f GB\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 7: printf("\n>> %.4f MB = %.4f B\n\n",value,conversorBytes(3,value)[option-6]);break;
+                case 8: printf("\n>> %.4f MB = %.4f KB\n\n",value,conversorBytes(3,value)[option-6]);break;
+                case 9: printf("\n>> %.4f MB = %.4f GB\n\n",value,conversorBytes(3,value)[option-6]);break;
+                case 10: printf("\n>> %.4f GB = %.4f B\n\n",value,conversorBytes(4,value)[option-9]);break;
+                case 11: printf("\n>> %.4f GB = %.4f KB\n\n",value,conversorBytes(4,value)[option-9]);break;
+                case 12: printf("\n>> %.4f GB = %.4f MB\n\n",value,conversorBytes(4,value)[option-9]);break;
             }
         }
         else if(option == 13 || option == 14 || option == 15 || option == 16) {

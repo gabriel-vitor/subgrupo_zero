@@ -27,10 +27,10 @@ int main() {
         printf("2. Unidades de Massa\n");
         printf("3. Unidades de Velocidade\n");
         printf("4. Conversor de Potencia\n");
-        printf("5. Unidades de Área\n");
+        printf("5. Unidades de Area\n");
         printf("6. Unidades de Tempo\n");
         printf("7. Conversor de Bytes\n");
-        printf("8. Conversor de Metros cúbicos\n");
+        printf("8. Conversor de Metros cubicos\n");
         printf("0. Sair\n");
         printf("\nEscolha uma opção: ");
         scanf("%d", &escolha);

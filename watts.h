@@ -73,18 +73,18 @@ void conversorWatts() {
             printf("\n> Escolha o valor de potencia: ");
             scanf("%f",&value);
             switch(option) {
-                case 1: printf("\n>> %f W = %f kW\n\n",value,conversor(1,value)[option]);break;
-                case 2: printf("\n>> %f W = %f CV\n\n",value,conversor(1,value)[option]);break;
-                case 3: printf("\n>> %f W = %f HP\n\n",value,conversor(1,value)[option]);break;
-                case 4: printf("\n>> %f kW = %f W\n\n",value,conversor(2,value)[option-3]);break;
-                case 5: printf("\n>> %f kW = %f CV\n\n",value,conversor(2,value)[option-3]);break;
-                case 6: printf("\n>> %f kW = %f HP\n\n",value,conversor(2,value)[option-3]);break;
-                case 7: printf("\n>> %f CV = %f W\n\n",value,conversor(2,value)[option-6]);break;
-                case 8: printf("\n>> %f CV = %f kW\n\n",value,conversor(2,value)[option-6]);break;
-                case 9: printf("\n>> %f CV = %f HP\n\n",value,conversor(2,value)[option-6]);break;
-                case 10: printf("\n>> %f HP = %f W\n\n",value,conversor(2,value)[option-9]);break;
-                case 11: printf("\n>> %f HP = %f kW\n\n",value,conversor(2,value)[option-9]);break;
-                case 12: printf("\n>> %f HP = %f CV\n\n",value,conversor(2,value)[option-9]);break;
+                case 1: printf("\n>> %.4f W = %.4f kW\n\n",value,conversor(1,value)[option]);break;
+                case 2: printf("\n>> %.4f W = %.4f CV\n\n",value,conversor(1,value)[option]);break;
+                case 3: printf("\n>> %.4f W = %.4f HP\n\n",value,conversor(1,value)[option]);break;
+                case 4: printf("\n>> %.4f kW = %.4f W\n\n",value,conversor(2,value)[option-3]);break;
+                case 5: printf("\n>> %.4f kW = %.4f CV\n\n",value,conversor(2,value)[option-3]);break;
+                case 6: printf("\n>> %.4f kW = %.4f HP\n\n",value,conversor(2,value)[option-3]);break;
+                case 7: printf("\n>> %.4f CV = %.4f W\n\n",value,conversor(3,value)[option-6]);break;
+                case 8: printf("\n>> %.4f CV = %.4f kW\n\n",value,conversor(3,value)[option-6]);break;
+                case 9: printf("\n>> %.4f CV = %.4f HP\n\n",value,conversor(3,value)[option-6]);break;
+                case 10: printf("\n>> %.4f HP = %.4f W\n\n",value,conversor(4,value)[option-9]);break;
+                case 11: printf("\n>> %.4f HP = %.4f kW\n\n",value,conversor(4,value)[option-9]);break;
+                case 12: printf("\n>> %.4f HP = %.4f CV\n\n",value,conversor(4,value)[option-9]);break;
             }
         }
         else if(option == 13 || option == 14 || option == 15 || option == 16) {
