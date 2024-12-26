@@ -86,3 +86,4 @@ void conversorBytesMenu() {
         #endif
     }
 }
+#endif
