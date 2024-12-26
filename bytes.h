@@ -43,6 +43,7 @@ void conversorBytesMenu() {
     while (1) {
         int option = 0;
         float value = 0.0;
+
         printf("===== Conversor de Tamanhos de Arquivos =====\n\n");
         printf("Escolha uma das opcoes:\n");
         printf("\t01 - Bytes (B)\n"
@@ -59,24 +60,17 @@ void conversorBytesMenu() {
 
             float* converted_values = conversorBytes(option, value);
 
-            printf("\n+%.*s+%.*s+%.*s+%.*s+\n",
-                   15, "---------------", 15, "---------------",
-                   15, "---------------", 15, "---------------");
-            printf("| %-13s | %-13s | %-13s | %-13s |\n",
-                   "Bytes (B)", "Kilobytes (KB)", "Megabytes (MB)", "Gigabytes (GB)");
-            printf("+%.*s+%.*s+%.*s+%.*s+\n",
-                   15, "---------------", 15, "---------------",
-                   15, "---------------", 15, "---------------");
+            printf("\n+---------------+---------------+---------------+---------------+\n");
+            printf("| Bytes (B)     | Kilobytes (KB) | Megabytes (MB) | Gigabytes (GB) |\n");
+            printf("+---------------+---------------+---------------+---------------+\n");
             printf("| %-13.4f | %-13.4f | %-13.4f | %-13.4f |\n",
                    converted_values[0], converted_values[1], converted_values[2], converted_values[3]);
-            printf("+%.*s+%.*s+%.*s+%.*s+\n\n",
-                   15, "---------------", 15, "---------------",
-                   15, "---------------", 15, "---------------");
+            printf("+---------------+---------------+---------------+---------------+\n\n");
         } else if (option == 0) break;
         else printf("\n\nOpcao invalida.\n");
 
         printf("Pressione ENTER para continuar...");
-        getchar();
+        while (getchar() != '\n'); // Limpa o buffer de entrada
         getchar();
 
         #ifdef _WIN32
