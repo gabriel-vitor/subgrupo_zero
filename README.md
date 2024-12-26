@@ -12,7 +12,7 @@ O programa oferece as seguintes possibilidades de conversão:
 <br/>**Unidades de Volume**: litro, mililitro, metros cúbicos;
 <br/>**Unidades de Temperatura**: Celsius, Fahrenheit, Kelvin;
 <br/>**Unidades de Velocidade**: km/h, m/s, mph;
-<br/>**Energia e Potência**: Watts, quilowatts, cavalos-vapor;
+<br/>**Energia e Potência**: Watts, quilowatts, cavalos-vapor, cavalos de força;
 <br/>**Unidades de Área**: metro quadrado, centímetro quadrado;
 <br/>**Unidades de Tempo**: segundos, minutos, horas;
 <br/>**Unidades de Armazenamento**: bits, bytes, kilobytes, megabytes, gigabytes, terabytes.
