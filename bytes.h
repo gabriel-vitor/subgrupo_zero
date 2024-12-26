@@ -1,63 +1,88 @@
+#ifndef BYTES_H
+#define BYTES_H
+
 #include <stdio.h>
+#include <stdlib.h>
 
-void converterUnidades(double valor, char unidadeOrigem, char unidadeDestino) {
-    double resultado;
+#define KB 1024
+#define MB (1024 * KB)
+#define GB (1024 * MB)
 
-    switch (unidadeOrigem) {
-        case 'B': // bytes
-            if (unidadeDestino == 'M') {
-                resultado = valor / (1024 * 1024);
-                printf("%.2lf bytes é igual a %.2lf MB\n", valor, resultado);
-            } else if (unidadeDestino == 'G') {
-                resultado = valor / (1024 * 1024 * 1024);
-                printf("%.2lf bytes é igual a %.2lf GB\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
+float* conversorBytes(int option, float value) {
+    static float converted_values[4] = {0, 0, 0, 0};
+    switch (option) {
+        case 1: // Bytes
+            converted_values[0] = value;
+            converted_values[1] = value / KB;
+            converted_values[2] = value / MB;
+            converted_values[3] = value / GB;
             break;
-
-        case 'M': // megabytes
-            if (unidadeDestino == 'B') {
-                resultado = valor * 1024 * 1024;
-                printf("%.2lf MB é igual a %.2lf bytes\n", valor, resultado);
-            } else if (unidadeDestino == 'G') {
-                resultado = valor / 1024;
-                printf("%.2lf MB é igual a %.2lf GB\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
+        case 2: // Kilobytes
+            converted_values[0] = value * KB;
+            converted_values[1] = value;
+            converted_values[2] = value / KB;
+            converted_values[3] = value / MB;
             break;
-
-        case 'G': // gigabytes
-            if (unidadeDestino == 'B') {
-                resultado = valor * 1024 * 1024 * 1024;
-                printf("%.2lf GB é igual a %.2lf bytes\n", valor, resultado);
-            } else if (unidadeDestino == 'M') {
-                resultado = valor * 1024;
-                printf("%.2lf GB é igual a %.2lf MB\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
+        case 3: // Megabytes
+            converted_values[0] = value * MB;
+            converted_values[1] = value * KB;
+            converted_values[2] = value;
+            converted_values[3] = value / KB;
             break;
-
-        default:
-            printf("Unidade de origem inválida.\n");
+        case 4: // Gigabytes
+            converted_values[0] = value * GB;
+            converted_values[1] = value * MB;
+            converted_values[2] = value * KB;
+            converted_values[3] = value;
             break;
     }
+    return converted_values;
 }
 
-int main() {
-    double valor;
-    char unidadeOrigem, unidadeDestino;
+void conversorBytesMenu() {
+    while (1) {
+        int option = 0;
+        float value = 0.0;
+        printf("===== Conversor de Tamanhos de Arquivos =====\n\n");
+        printf("Escolha uma das opcoes:\n");
+        printf("\t01 - Bytes (B)\n"
+               "\t02 - Kilobytes (KB)\n"
+               "\t03 - Megabytes (MB)\n"
+               "\t04 - Gigabytes (GB)\n"
+               "\t0  - Sair\n\n");
+        printf("> Digite sua opcao: ");
+        scanf("%i", &option);
 
-    printf("Digite o valor a ser convertido: ");
-    scanf("%lf", &valor);
-    printf("Digite a unidade de origem (B para bytes, M para megabytes, G para gigabytes): ");
-    scanf(" %c", &unidadeOrigem);
-    printf("Digite a unidade de destino (B para bytes, M para megabytes, G para gigabytes): ");
-    scanf(" %c", &unidadeDestino);
+        if (option >= 1 && option <= 4) {
+            printf("\n> Digite o valor: ");
+            scanf("%f", &value);
 
-    converterUnidades(valor, unidadeOrigem, unidadeDestino);
+            float* converted_values = conversorBytes(option, value);
 
-    return 0;
+            printf("\n+%.*s+%.*s+%.*s+%.*s+\n",
+                   15, "---------------", 15, "---------------",
+                   15, "---------------", 15, "---------------");
+            printf("| %-13s | %-13s | %-13s | %-13s |\n",
+                   "Bytes (B)", "Kilobytes (KB)", "Megabytes (MB)", "Gigabytes (GB)");
+            printf("+%.*s+%.*s+%.*s+%.*s+\n",
+                   15, "---------------", 15, "---------------",
+                   15, "---------------", 15, "---------------");
+            printf("| %-13.4f | %-13.4f | %-13.4f | %-13.4f |\n",
+                   converted_values[0], converted_values[1], converted_values[2], converted_values[3]);
+            printf("+%.*s+%.*s+%.*s+%.*s+\n\n",
+                   15, "---------------", 15, "---------------",
+                   15, "---------------", 15, "---------------");
+        } else if (option == 0) break;
+        else printf("\n\nOpcao invalida.\n");
+
+        printf("Pressione ENTER para continuar...");
+        getchar();
+        getchar();
+
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
+    }
 }
