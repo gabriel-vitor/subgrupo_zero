@@ -34,18 +34,18 @@ void converterTemperatura() {
         float temperatura;
 
         printf("\n===== Conversor de Temperatura =====\n\n");
-        printf("Escolha uma das opções:\n");
+        printf("Escolha uma das opcoes:\n");
         printf("\t01 - Celsius para Fahrenheit\n");
         printf("\t02 - Fahrenheit para Celsius\n");
         printf("\t03 - Celsius para Kelvin\n");
         printf("\t04 - Kelvin para Celsius\n");
         printf("\t05 - Fahrenheit para Kelvin\n");
         printf("\t06 - Kelvin para Fahrenheit\n");
-        printf("\t07 - Tabela de conversão para Celsius\n");
-        printf("\t08 - Tabela de conversão para Fahrenheit\n");
-        printf("\t09 - Tabela de conversão para Kelvin\n");
+        printf("\t07 - Tabela de conversao para Celsius\n");
+        printf("\t08 - Tabela de conversao para Fahrenheit\n");
+        printf("\t09 - Tabela de conversao para Kelvin\n");
         printf("\t0  - Sair\n\n");
-        printf("> Digite sua opção: ");
+        printf("> Digite sua opcao: ");
         scanf("%d", &opcao);
 
         if (opcao >= 1 && opcao <= 6) {
@@ -88,13 +88,13 @@ void converterTemperatura() {
 
             switch (opcao) {
                 case 7:
-                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (C)", "Fahrenheit (F)", "Kelvin (K)");
                     break;
                 case 8:
-                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (C)", "Fahrenheit (F)", "Kelvin (K)");
                     break;
                 case 9:
-                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)");
+                    printf("| %-23s | %-23s | %-23s |\n", "Celsius (C)", "Fahrenheit (F)", "Kelvin (K)");
                     break;
             }
 
@@ -109,7 +109,7 @@ void converterTemperatura() {
         } else if (opcao == 0) {
             break;
         } else {
-            printf("Opção inválida!\n");
+            printf("Opcao invalida!\n");
         }
 
         printf("\nAperte ENTER para continuar...");

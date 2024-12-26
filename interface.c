@@ -32,7 +32,7 @@ int main() {
         printf("7. Conversor de Bytes\n");
         printf("8. Conversor de Metros cubicos\n");
         printf("0. Sair\n");
-        printf("\nEscolha uma opção: ");
+        printf("\nEscolha uma opcao: ");
         scanf("%d", &escolha);
 
         clear();
