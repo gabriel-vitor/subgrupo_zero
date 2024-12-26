@@ -19,7 +19,7 @@ void converterMassa(){
     	printf("1. Converter de toneladas para quilogramas\n2. Converter de quilogramas para toneladas\n3. Converter de quilogramas para gramas\n4. Converter de gramas para quilogramas\n5. Converter de gramas para miligramas\n6. Converter de miligramas para gramas\n0 - Sair\n");
     	printf("Digite o número da opção desejada (1-6): ");
     	scanf("%d", &op);
-    	system("clear");
+    	
     	
     	switch(op){
     	    case 1:
@@ -74,6 +74,6 @@ void converterMassa(){
         	printf("\nDeseja continuar em conversão de massa? 1. SIM 0. NÃO\t");
         	scanf("%d", &op);
     	}
-    	
+    	system("clear");
 	}
 }
