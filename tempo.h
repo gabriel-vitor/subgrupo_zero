@@ -72,11 +72,3 @@ void converterTempo() {
     converterUnidadesTempo(valor, unidadeOrigem, unidadeDestino);
 }
 
-int main() {
-    // Chama a função principal de conversão de tempo
-    converterTempo();
-
-    return 0;
-}
-
-

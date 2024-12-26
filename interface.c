@@ -56,7 +56,7 @@ int main() {
                 converterTempo();
                 break;
             case 7:
-                converterBytes();
+                conversorBytesMenu();
                 break;
             case 8:
                 converterMetros();

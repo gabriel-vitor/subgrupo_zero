@@ -5,8 +5,8 @@
 #include <stdlib.h>
 
 #define KB 1024
-#define MB (1024 * KB)
-#define GB (1024 * MB)
+#define MB 1048576
+#define GB 1073741824
 
 float* conversorBytes(int option, float value) {
     static float converted_values[4] = {0, 0, 0, 0};
@@ -18,22 +18,22 @@ float* conversorBytes(int option, float value) {
             converted_values[3] = value / GB;
             break;
         case 2: // Kilobytes
-            converted_values[0] = value * KB;
-            converted_values[1] = value;
+            converted_values[0] = value;
+            converted_values[1] = value * KB;
             converted_values[2] = value / KB;
             converted_values[3] = value / MB;
             break;
         case 3: // Megabytes
-            converted_values[0] = value * MB;
-            converted_values[1] = value * KB;
-            converted_values[2] = value;
+            converted_values[0] = value;
+            converted_values[1] = value * MB;
+            converted_values[2] = value * KB;
             converted_values[3] = value / KB;
             break;
         case 4: // Gigabytes
-            converted_values[0] = value * GB;
-            converted_values[1] = value * MB;
-            converted_values[2] = value * KB;
-            converted_values[3] = value;
+            converted_values[0] = value;
+            converted_values[1] = value * GB;
+            converted_values[2] = value * MB;
+            converted_values[3] = value * KB;
             break;
     }
     return converted_values;
@@ -46,33 +46,79 @@ void conversorBytesMenu() {
 
         printf("===== Conversor de Tamanhos de Arquivos =====\n\n");
         printf("Escolha uma das opcoes:\n");
-        printf("\t01 - Bytes (B)\n"
-               "\t02 - Kilobytes (KB)\n"
-               "\t03 - Megabytes (MB)\n"
-               "\t04 - Gigabytes (GB)\n"
-               "\t0  - Sair\n\n");
+        printf("\t01 - Bytes (B) para Kilobytes (KB)\n"
+                "\t02 - Bytes (B) para Megabytes (MB)\n"
+                "\t03 - Bytes (B) para Gigabytes (GB)\n"
+                "\t04 - Kilobytes (KB) para Bytes (B) \n"
+                "\t05 - Kilobytes (KB) para Megabytes (MB) \n"
+                "\t06 - Kilobytes (KB) para Gigabytes (GB)\n"
+                "\t07 - Megabytes (MB) para Bytes (B) \n"
+                "\t08 - Megabytes (MB) para Kilobytes (KB) \n"
+                "\t09 - Megabytes (MB) para Gigabytes (GB)\n"
+                "\t10 - Gigabytes (GB) para Bytes (B)\n"
+                "\t11 - Gigabytes (GB) para Kiloytes (KB)\n"
+                "\t12 - Gigabytes (GB) para Megabytes (MB)\n"
+                "\t13 - Tabela de conversao para Bytes (B)\n"
+                "\t14 - Tabela de conversao para Kilobytes (KB)\n"
+                "\t15 - Tabela de conversao para Megabytes (MB)\n"
+                "\t16 - Tabela de conversao para Gigabytes (GB)\n"
+                "\t0  - Sair\n\n");
         printf("> Digite sua opcao: ");
         scanf("%i", &option);
 
-        if (option >= 1 && option <= 4) {
+        if(option == 1 || option == 2 || option == 3 || option == 4 || option == 5 || option == 6 || option == 7 || option == 8 || option == 9 || option == 10 || option == 11 || option == 12) {
             printf("\n> Digite o valor: ");
-            scanf("%f", &value);
+            scanf("%f",&value);
+            switch(option) {
+                case 1: printf("\n>> %f B = %f KB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 2: printf("\n>> %f B = %f MB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 3: printf("\n>> %f B = %f GB\n\n",value,conversorBytes(1,value)[option]);break;
+                case 4: printf("\n>> %f KB = %f B\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 5: printf("\n>> %f KB = %f MB\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 6: printf("\n>> %f KB = %f GB\n\n",value,conversorBytes(2,value)[option-3]);break;
+                case 7: printf("\n>> %f MB = %f B\n\n",value,conversorBytes(2,value)[option-6]);break;
+                case 8: printf("\n>> %f MB = %f KB\n\n",value,conversorBytes(2,value)[option-6]);break;
+                case 9: printf("\n>> %f MB = %f GB\n\n",value,conversorBytes(2,value)[option-6]);break;
+                case 10: printf("\n>> %f GB = %f B\n\n",value,conversorBytes(2,value)[option-9]);break;
+                case 11: printf("\n>> %f GB = %f KB\n\n",value,conversorBytes(2,value)[option-9]);break;
+                case 12: printf("\n>> %f GB = %f MB\n\n",value,conversorBytes(2,value)[option-9]);break;
+            }
+        }
+        else if(option == 13 || option == 14 || option == 15 || option == 16) {
+            printf("\n> Digite o valor: ");
+            scanf("%f",&value);
 
-            float* converted_values = conversorBytes(option, value);
+            float* converted_values = conversorBytes(option-12,value);
 
-            printf("\n+---------------+---------------+---------------+---------------+\n");
-            printf("| Bytes (B)     | Kilobytes (KB) | Megabytes (MB) | Gigabytes (GB) |\n");
-            printf("+---------------+---------------+---------------+---------------+\n");
-            printf("| %-13.4f | %-13.4f | %-13.4f | %-13.4f |\n",
-                   converted_values[0], converted_values[1], converted_values[2], converted_values[3]);
-            printf("+---------------+---------------+---------------+---------------+\n\n");
-        } else if (option == 0) break;
-        else printf("\n\nOpcao invalida.\n");
+            printf("\n+%.*s+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------", 25, "-------------------------");
 
-        printf("Pressione ENTER para continuar...");
-        while (getchar() != '\n'); // Limpa o buffer de entrada
+            switch(option) {
+                case 13: printf("| %-23s | %-23s | %-23s | %-23s |\n", "Bytes (B)", "Kilobytes (KB)", "Megabytes (MB)", "Gigabytes (GB)"); break;
+                case 14: printf("| %-23s | %-23s | %-23s | %-23s |\n", "Kilobytes (KB)", "Bytes (B)", "Megabytes (MB)", "Gigabytes (GB)"); break;
+                case 15: printf("| %-23s | %-23s | %-23s | %-23s |\n", "Megabytes (MB)", "Bytes (B)", "Kilobytes (KB)", "Gigabytes (GB)"); break;
+                case 16: printf("| %-23s | %-23s | %-23s | %-23s |\n", "Gigabytes (GB)", "Bytes (B)", "Kilobytes (KB)", "Megabytes (MB)"); break;
+            }
+
+            printf("+%.*s+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------", 25, "-------------------------");
+
+            printf("| %-23.4f | %-23.4f | %-23.4f | %-23.4f |\n",
+                converted_values[0], converted_values[1], converted_values[2], converted_values[3]);
+
+            printf("+%.*s+%.*s+%.*s+%.*s+\n\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------", 25, "-------------------------");
+        }
+        else if(option == 0) break;
+        else printf("\n\nOpcao invalida. ");
+        
+        printf("Aperte ENTER para escolher uma nova opcao...");
+        getchar(); 
         getchar();
-
+        
         #ifdef _WIN32
             system("cls");
         #else
