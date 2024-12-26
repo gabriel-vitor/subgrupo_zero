@@ -46,7 +46,9 @@ void converterUnidades(double valor, char unidadeOrigem, char unidadeDestino) {
     }
 }
 
+
 void converterBytes() {
+
     double valor;
     char unidadeOrigem, unidadeDestino;
 
