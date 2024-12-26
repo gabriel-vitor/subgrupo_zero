@@ -1,67 +1,74 @@
-//Código desenvolvido por Andressa Sousa Fonseca
-
 #include <stdio.h>
-#include <locale.h>
+#include <stdlib.h>
 
-void converterMassa(){
-	
-	int op=1; //op armazena a opção escolhida pelo usuário
-	float valor, calculo; //valor armazena o valor desejado pelo usuário para conversão e calculo armazenada o resultado da operação de conversão
-	
-	//Permitir acentuação
-	setlocale(LC_ALL, "pt_BR.UTF-8");
+#define LITRO_ML 1000
+#define LITRO_MCUBO 0.001
+#define ML_LITRO 0.001
+#define ML_MCUBO 0.000001
+#define MCUBO_LITRO 1000
+#define MCUBO_ML 1000000
 
-		//Loop para permitir que o usuário escolha mais de um aopção até que deseje sair
-	while(op!=0){
-	
-	printf("\n\t\tMENU\n");
-	printf("\t1 - Converter de quilogramas para gramas\n\t2 - Converter de gramas para quilogramas\n\t3 - Converter de toneladas para quilogramas\n\t4 - Converter de quilogramas para toneladas\n\t0 - Sair\n");
-	printf("Digite o número da opção desejada: ");
-	scanf("%d", &op);
-	
-	
-	switch(op){
-		case 1: 
-			//Conversão de quilogramas para gramas
-			printf("\nDigite o valor que desejar converter: ");
-			scanf("%f", &valor);
-			calculo=valor*1000;
-			printf("\n\t%.2f quilograma(s) equivale(m) a %.2f grama(s)\n",valor, calculo);
-			break;
-		case 2:
-			//Conversão de gramas para quilogramas
-			printf("\nDigite o valor que desejar converter: ");
-			scanf("%f", &valor);
-			calculo=valor/1000;
-			printf("\n\t%.2f grama(s) equivale(m) a %.2f quilograma(s)\n",valor, calculo);
-			break;
-		case 3:
-			//Conversão de toneladas para quilogramas
-			printf("\n\tDigite o valor que desejar converter: ");
-			scanf("%f", &valor);
-			calculo=valor*1000;
-			printf("\n\t%.2f tonelada(s) equivale(m) a %.2f quilograma(s)\n",valor, calculo);
-			break;
-		case 4:
-			//Conversão de quilogramas para toneladas
-			printf("\nDigite o valor que desejar converter: ");
-			scanf("%f", &valor);
-			calculo=valor/1000;
-			printf("\n\t%.2f quilograma(s) equivale(m) a %.2f tonelada(s)\n",valor, calculo);
-			break;
-		case 0:
-			break;
-		default:
-			printf("\n\tOpção inexistente\n");
-			break;
-	}
+float* converterVolume(int opcao, float valor) {
+    static float valores_convertidos[3] = {0, 0, 0};
+    switch (opcao) {
+        case 1: // Litros para Mililitros e Metros Cúbicos
+            valores_convertidos[0] = valor;
+            valores_convertidos[1] = valor * LITRO_ML;
+            valores_convertidos[2] = valor * LITRO_MCUBO;
+            break;
+        case 2: // Mililitros para Litros e Metros Cúbicos
+            valores_convertidos[0] = valor;
+            valores_convertidos[1] = valor * ML_LITRO;
+            valores_convertidos[2] = valor * ML_MCUBO;
+            break;
+        case 3: // Metros cúbicos para Litros e Mililitros
+            valores_convertidos[0] = valor;
+            valores_convertidos[1] = valor * MCUBO_LITRO;
+            valores_convertidos[2] = valor * MCUBO_ML;
+            break;
+        default:
+            printf("Opção inválida!\n");
+    }
+    return valores_convertidos;
+}
 
-		//Dá ao usuário a possibilidade de voltar ou não ao menu
-        if(op!=0){
-    	    printf("\nDeseja continuar em conversão de massa?\n\t1 - SIM\n\t0 - NÃO\n");
-    	    scanf("%d",&op);
+void conversorVolume() {
+    while (1) {
+        int opcao;
+        float valor;
+        printf("=== Conversor de Unidades de Volume ===\n");
+        printf("1 - Litros para Mililitros e Metros Cubicos\n");
+        printf("2 - Mililitros para Litros e Metros Cubicos\n");
+        printf("3 - Metros cubicos para Litros e Mililitros\n");
+        printf("0 - Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+        
+        if (opcao == 0) break;
+        
+        printf("Digite o valor a ser convertido: ");
+        scanf("%f", &valor);
+        
+        float* resultados = converterVolume(opcao, valor);
+        switch (opcao) {
+            case 1:
+                printf("%.2f litros = %.2f mililitros, %.6f metros cubicos\n", resultados[0], resultados[1], resultados[2]);
+                break;
+            case 2:
+                printf("%.2f mililitros = %.2f litros, %.6f metros cubicos\n", resultados[0], resultados[1], resultados[2]);
+                break;
+            case 3:
+                printf("%.6f metros cubicos = %.2f litros, %.2f mililitros\n", resultados[0], resultados[1], resultados[2]);
+                break;
         }
+        printf("\nPressione ENTER para continuar...");
+        getchar();
+        getchar();
+        system("clear");
+    }
+}
 
-	}
-	printf("Saindo de conversão de massa");
+int main() {
+    conversorVolume();
+    return 0;
 }
