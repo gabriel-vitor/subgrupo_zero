@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "temperatura.h" // Inclui o cabeçalho com as funções de conversão.
 #include "tempo.h"
 #include "area.h"
@@ -8,23 +9,33 @@
 #include "bytes.h"
 #include "metros.h"
 
+void clear() {
+    #ifdef _WIN32
+            system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 int main() {
     int escolha;
 
     do {
-        printf("\n===== Menu de Conversores =====\n");
+        clear();
+        printf("===== Menu de Conversores =====\n");
         printf("1. Conversor de Temperatura\n");
         printf("2. Unidades de Massa\n");
         printf("3. Unidades de Velocidade\n");
-        printf("4. Watts, kW, e CV\n");
+        printf("4. Conversor de Potencia\n");
         printf("5. Unidades de Área\n");
         printf("6. Unidades de Tempo\n");
         printf("7. Conversor de Bytes\n");
         printf("8. Conversor de Metros cúbicos\n");
         printf("0. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("\nEscolha uma opção: ");
         scanf("%d", &escolha);
 
+        clear();
         switch (escolha) {
             case 1:
                 converterTemperatura();
