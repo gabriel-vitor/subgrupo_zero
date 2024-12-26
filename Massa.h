@@ -8,7 +8,7 @@
 #define M (1000*K) // 1 milhão
 #define B (1000*M) //1 bilhão
 
-float* conversor(int option, float value) {
+float* conversorMassa(int option, float value) {
     static float converted_values[4] = {0,0,0,0};
     switch (option)
     {
@@ -60,7 +60,7 @@ void converterMassa() {
             printf("\n> Digite o valor: ");
             scanf("%f",&value);
 
-            float* converted_values = conversor(option,value);
+            float* converted_values = conversorMassa(option,value);
 
             printf("\n+%.*s+%.*s+%.*s+%.*s+\n",
                 25, "-------------------------", 25, "-------------------------",
