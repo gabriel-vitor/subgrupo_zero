@@ -71,7 +71,7 @@ void converterMassa(){
     			break;
     	}
     	if(op!=0){
-        	printf("\nDeseja continuar em conversão de massa? Se não, digite 0 para sair.\t");
+        	printf("\nDeseja continuar em conversão de massa? 1. SIM 0. NÃO\t");
         	scanf("%d", &op);
     	}
     	
