@@ -49,37 +49,37 @@ void converterTemperatura() {
         scanf("%d", &opcao);
 
         if (opcao >= 1 && opcao <= 6) {
-            printf("> Digite a temperatura: ");
+            printf("\n> Digite a temperatura: ");
             scanf("%f", &temperatura);
             float resultado;
             switch (opcao) {
                 case 1:
                     resultado = (temperatura * 9.0 / 5.0) + 32.0;
-                    printf("%.2f Celsius = %.2f Fahrenheit\n", temperatura, resultado);
+                    printf("\n\n>> %.2f Celsius = %.2f Fahrenheit\n", temperatura, resultado);
                     break;
                 case 2:
                     resultado = (temperatura - 32.0) * 5.0 / 9.0;
-                    printf("%.2f Fahrenheit = %.2f Celsius\n", temperatura, resultado);
+                    printf("\n\n>> %.2f Fahrenheit = %.2f Celsius\n", temperatura, resultado);
                     break;
                 case 3:
                     resultado = temperatura + KELVIN_OFFSET;
-                    printf("%.2f Celsius = %.2f Kelvin\n", temperatura, resultado);
+                    printf("\n\n>> %.2f Celsius = %.2f Kelvin\n", temperatura, resultado);
                     break;
                 case 4:
                     resultado = temperatura - KELVIN_OFFSET;
-                    printf("%.2f Kelvin = %.2f Celsius\n", temperatura, resultado);
+                    printf("\n\n>> %.2f Kelvin = %.2f Celsius\n", temperatura, resultado);
                     break;
                 case 5:
                     resultado = ((temperatura - 32.0) * 5.0 / 9.0) + KELVIN_OFFSET;
-                    printf("%.2f Fahrenheit = %.2f Kelvin\n", temperatura, resultado);
+                    printf("\n\n>> %.2f Fahrenheit = %.2f Kelvin\n", temperatura, resultado);
                     break;
                 case 6:
                     resultado = ((temperatura - KELVIN_OFFSET) * 9.0 / 5.0) + 32.0;
-                    printf("%.2f Kelvin = %.2f Fahrenheit\n", temperatura, resultado);
+                    printf("\n\n>>%.2f Kelvin = %.2f Fahrenheit\n", temperatura, resultado);
                     break;
             }
         } else if (opcao >= 7 && opcao <= 9) {
-            printf("> Digite a temperatura: ");
+            printf("\n> Digite a temperatura: ");
             scanf("%f", &temperatura);
             float* valores_convertidos = conversorTemperaturas(opcao, temperatura);
 

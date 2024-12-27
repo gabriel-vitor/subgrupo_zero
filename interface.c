@@ -24,11 +24,11 @@ int main() {
         clear();
         printf("===== Menu de Conversores =====\n");
         printf("1. Conversor de Temperatura\n");
-        printf("2. Unidades de Massa\n");
-        printf("3. Unidades de Velocidade\n");
+        printf("2. Conversor de Massa\n");
+        printf("3. Conversor de Velocidade\n");
         printf("4. Conversor de Potencia\n");
-        printf("5. Unidades de Area\n");
-        printf("6. Unidades de Tempo\n");
+        printf("5. Conversor de Area\n");
+        printf("6. Conversor de Tempo\n");
         printf("7. Conversor de Bytes\n");
         printf("8. Conversor de Metros cubicos\n");
         printf("0. Sair\n");

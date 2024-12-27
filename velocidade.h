@@ -44,19 +44,19 @@ void converterVelocidade() {
     while (1) {
         int opcao = 0;
         float velocidade = 0.0;
-        printf("\n--- Conversão de Velocidades ---\n"); 
-        printf("1. km/h para m/s\n");                   
-        printf("2. m/s para km/h\n");                   
-        printf("3. km/h para mph\n");                   
-        printf("4. mph para km/h\n");                   
-        printf("5. m/s para mph\n");                    
-        printf("6. mph para m/s\n");                    
-        printf("0. Sair\n");                    
-        printf("Digite sua escolha (1-6): ");           
+        printf("===== Conversor de Velocidade =====\n\n");
+        printf("1 - km/h para m/s\n");                   
+        printf("2 - m/s para km/h\n");                   
+        printf("3 - km/h para mph\n");                   
+        printf("4 - mph para km/h\n");                   
+        printf("5 - m/s para mph\n");                    
+        printf("6 - mph para m/s\n");                    
+        printf("0 - Sair\n");                    
+        printf("\n> Digite sua escolha (1-6): ");           
         scanf("%d", &opcao);                           
         
         if(opcao >= 1 && opcao <= 6) {
-            printf("Digite a velocidade: ");
+            printf("> Digite a velocidade: ");
             scanf("%f", &velocidade);
             float* converted_values = conversorVelocidade(opcao, velocidade);
 
@@ -70,9 +70,9 @@ void converterVelocidade() {
             }
         }
         else if(opcao == 0) break;
-        else printf("Opção inválida!\n");
+        else printf("Opção invalida!\n");
 
-        printf("Pressione ENTER para escolher uma nova opção...");
+        printf("Pressione ENTER para escolher uma nova opcao...");
         getchar();
         getchar();
 
