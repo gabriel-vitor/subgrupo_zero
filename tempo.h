@@ -1,74 +1,114 @@
-/*Código desenvolvido pelo aluno: Henrique Daniel Resende, Subgrupo Zero. 
-O código pergunta ao usuário qual é a unidade de tempo e ele responde entre segundos, 
-minutos e horas, depois o usuário fornece a quantidade. Se for minutos o retorno será
-a quantidade de segundos e de horas que possuem na quantidade de minutos dada pelo usuário
-a mesma coisa acontece com segundos e horas, o programa fornece a quantidade das outras medidas*/
+//Código desenvolvido pelo aluno: Lucas Carneiro de Araújo Lima. 
+#ifndef TEMPO_H  
+#define TEMPO_H  
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-//função para converter as unidades de tempo
-void converterUnidadesTempo(double valor, char unidadeOrigem, char unidadeDestino) {
-    double resultado; 
+#define MIN 60
+#define HOUR 3600
 
-// Verifica a unidade de origem
-    switch (unidadeOrigem) {
-        case 'S': // segundos
-            if (unidadeDestino == 'M') { // Se a unidade de destino for minutos
-                resultado = valor / 60.0;
-                printf("%.2lf segundos é igual a %.2lf minutos\n", valor, resultado);
-            } else if (unidadeDestino == 'H') { // Se a unidade de destino for horas
-                resultado = valor / 3600.0;
-                printf("%.2lf segundos é igual a %.2lf horas\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
+float* conversorTempo(int option, float value) {
+    static float converted_values[3] = {0,0,0};
+    switch (option)
+    {
+        case 1:
+            converted_values[0] = value;
+            converted_values[1] = value/MIN;
+            converted_values[2] = value/HOUR;
             break;
-
-        case 'M': // minutos
-            if (unidadeDestino == 'S') {
-                resultado = valor * 60.0;
-                printf("%.2lf minutos é igual a %.2lf segundos\n", valor, resultado);
-            } else if (unidadeDestino == 'H') {
-                resultado = valor / 60.0;
-                printf("%.2lf minutos é igual a %.2lf horas\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
+        case 2:
+            converted_values[0] = value;
+            converted_values[1] = value*MIN;
+            converted_values[2] = value/MIN;
             break;
-
-        case 'H': // horas
-            if (unidadeDestino == 'S') {
-                resultado = valor * 3600.0;
-                printf("%.2lf horas é igual a %.2lf segundos\n", valor, resultado);
-            } else if (unidadeDestino == 'M') {
-                resultado = valor * 60.0;
-                printf("%.2lf horas é igual a %.2lf minutos\n", valor, resultado);
-            } else {
-                printf("Unidade de destino inválida.\n");
-            }
-            break;
-
-        default:
-            printf("Unidade de origem inválida.\n");
+        case 3:
+            converted_values[0] = value;
+            converted_values[1] = value*HOUR;
+            converted_values[2] = value*(HOUR/MIN);
             break;
     }
+
+    return converted_values;
 }
 
-// Função principal que interage com o usuário
 void converterTempo() {
-    double valor;
-    char unidadeOrigem, unidadeDestino;
+    while (1) {
+        int option = 0;
+        float value = 0.0;
+        printf("===== Conversor de Potencia =====\n\n");
+        printf("Escolha uma das opcoes:\n");
+        printf("\t01 - Segundos (S) para Minutos (M)\n"
+            "\t02 - Segundos (S) para Horas (H)\n"
+            "\t03 - Minutos (M) para Segundos (S)\n"
+            "\t04 - Minutos (M) para Horas (H)\n"
+            "\t05 - Horas (H) para Segundos (S)\n"
+            "\t06 - Horas (H) para Minutos (M)\n"
+            "\t07 - Tabela de conversao para Segundos (S)\n"
+            "\t08 - Tabela de conversao para Minutos (M)\n"
+            "\t09 - Tabela de conversao para Horas (H)\n"
+            "\t0  - Sair\n"
+        "\n\n");
+        printf("> Digite sua opcao: ");
+        scanf("%i",&option);
 
-// Solicita ao usuário o valor e as unidades de origem e destino
-    printf("Digite o valor a ser convertido: ");
-    scanf("%lf", &valor);
-    printf("Digite a unidade de origem (S para segundos, M para minutos, H para horas): ");
-    scanf(" %c", &unidadeOrigem);
-    printf("Digite a unidade de destino (S para segundos, M para minutos, H para horas): ");
-    scanf(" %c", &unidadeDestino);
+        if(option == 1 || option == 2 || option == 3 || option == 4 || option == 5 || option == 6) {
+            printf("\n> Digite o valor: ");
+            scanf("%f",&value);
+            switch(option) {
+                case 1: printf("\n>> %.4f S = %.4f M\n\n",value,conversorTempo(1,value)[option]);break;
+                case 2: printf("\n>> %.4f S = %.4f H\n\n",value,conversorTempo(1,value)[option]);break;
+                case 3: printf("\n>> %.4f M = %.4f S\n\n",value,conversorTempo(2,value)[option-2]);break;
+                case 4: printf("\n>> %.4f M = %.4f H\n\n",value,conversorTempo(2,value)[option-2]);break;
+                case 5: printf("\n>> %.4f H = %.4f S\n\n",value,conversorTempo(3,value)[option-4]);break;
+                case 6: printf("\n>> %.4f H = %.4f M\n\n",value,conversorTempo(3,value)[option-4]);break;
+            }
+        }
+        else if(option == 7 || option == 8 || option == 9) {
+            printf("\n> Digite o valor: ");
+            scanf("%f",&value);
 
-// Chama a função que realiza a conversão
-    converterUnidadesTempo(valor, unidadeOrigem, unidadeDestino);
+            float* converted_values = conversorTempo(option-6,value);
+
+           printf("\n+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------");
+
+            switch(option) {
+                case 7: 
+                    printf("| %-23s | %-23s | %-23s |\n", "Segundos (S)", "Minutos (M)", "Horas (H)"); 
+                    break;
+                case 8: 
+                    printf("| %-23s | %-23s | %-23s |\n", "Minutos (M)", "Segundos (S)", "Horas (H)"); 
+                    break;
+                case 9: 
+                    printf("| %-23s | %-23s | %-23s |\n", "Horas (H)", "Segundos (S)", "Minutos (M)"); 
+                    break;
+            }
+
+            printf("+%.*s+%.*s+%.*s+\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------");
+
+            printf("| %-23.4f | %-23.4f | %-23.4f |\n",
+                converted_values[0], converted_values[1], converted_values[2]);
+
+            printf("+%.*s+%.*s+%.*s+\n\n",
+                25, "-------------------------", 25, "-------------------------",
+                25, "-------------------------");
+        }
+        else if(option == 0) break;
+        else printf("\n\nOpcao invalida. ");
+        
+        printf("Aperte ENTER para escolher uma nova opcao...");
+        getchar(); 
+        getchar();
+        
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
+    }
 }
-
+#endif
