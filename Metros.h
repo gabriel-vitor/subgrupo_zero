@@ -8,28 +8,37 @@
 #define MCUBO_LITRO 1000
 #define MCUBO_ML 1000000
 
-float* converterVolume(int opcao, float valor) {
-    static float valores_convertidos[3] = {0, 0, 0};
+void converterVolume(int opcao, float valor) {
+    float resultado = 0;
+
     switch (opcao) {
-        case 1: // Litros para Mililitros e Metros Cúbicos
-            valores_convertidos[0] = valor;
-            valores_convertidos[1] = valor * LITRO_ML;
-            valores_convertidos[2] = valor * LITRO_MCUBO;
+        case 1: // Litros para Mililitros
+            resultado = valor * LITRO_ML;
+            printf("\n\n>> %.4f litros = %.2f mililitros\n", valor, resultado);
             break;
-        case 2: // Mililitros para Litros e Metros Cúbicos
-            valores_convertidos[0] = valor;
-            valores_convertidos[1] = valor * ML_LITRO;
-            valores_convertidos[2] = valor * ML_MCUBO;
+        case 2: // Litros para Metros Cubicos
+            resultado = valor * LITRO_MCUBO;
+            printf("\n\n>> %.4f litros = %.6f metros cubicos\n", valor, resultado);
             break;
-        case 3: // Metros cúbicos para Litros e Mililitros
-            valores_convertidos[0] = valor;
-            valores_convertidos[1] = valor * MCUBO_LITRO;
-            valores_convertidos[2] = valor * MCUBO_ML;
+        case 3: // Mililitros para Litros
+            resultado = valor * ML_LITRO;
+            printf("\n\n>> %.4f mililitros = %.2f litros\n", valor, resultado);
+            break;
+        case 4: // Mililitros para Metros Cubicos
+            resultado = valor * ML_MCUBO;
+            printf("\n\n>> %.4f mililitros = %.6f metros cubicos\n", valor, resultado);
+            break;
+        case 5: // Metros Cubicos para Litros
+            resultado = valor * MCUBO_LITRO;
+            printf("\n\n>> %.4f metros cubicos = %.2f litros\n", valor, resultado);
+            break;
+        case 6: // Metros Cubicos para Mililitros
+            resultado = valor * MCUBO_ML;
+            printf("\n\n>> %.4f metros cubicos = %.2f mililitros\n", valor, resultado);
             break;
         default:
-            printf("Opção inválida!\n");
+            printf("Opcao invalida!\n");
     }
-    return valores_convertidos;
 }
 
 void conversorVolume() {
@@ -37,38 +46,33 @@ void conversorVolume() {
         int opcao;
         float valor;
         printf("=== Conversor de Unidades de Volume ===\n");
-        printf("1 - Litros para Mililitros e Metros Cubicos\n");
-        printf("2 - Mililitros para Litros e Metros Cubicos\n");
-        printf("3 - Metros cubicos para Litros e Mililitros\n");
+        printf("1 - Litros para Mililitros\n");
+        printf("2 - Litros para Metros Cubicos\n");
+        printf("3 - Mililitros para Litros\n");
+        printf("4 - Mililitros para Metros Cubicos\n");
+        printf("5 - Metros Cubicos para Litros\n");
+        printf("6 - Metros Cubicos para Mililitros\n");
         printf("0 - Sair\n");
-        printf("Opcao: ");
+        printf("\n> Digite sua opcao: ");
         scanf("%d", &opcao);
-        
+
         if (opcao == 0) break;
-        
-        printf("Digite o valor a ser convertido: ");
-        scanf("%f", &valor);
-        
-        float* resultados = converterVolume(opcao, valor);
-        switch (opcao) {
-            case 1:
-                printf("%.2f litros = %.2f mililitros, %.6f metros cubicos\n", resultados[0], resultados[1], resultados[2]);
-                break;
-            case 2:
-                printf("%.2f mililitros = %.2f litros, %.6f metros cubicos\n", resultados[0], resultados[1], resultados[2]);
-                break;
-            case 3:
-                printf("%.6f metros cubicos = %.2f litros, %.2f mililitros\n", resultados[0], resultados[1], resultados[2]);
-                break;
-        }
+
+        if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6) {
+            printf("\n> Digite o valor a ser convertido: ");
+            scanf("%f", &valor);
+
+            converterVolume(opcao, valor);
+        } else printf("Opcao invalida!\n");
+
         printf("\nPressione ENTER para continuar...");
         getchar();
         getchar();
-        system("clear");
-    }
-}
 
-int main() {
-    conversorVolume();
-    return 0;
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
+    }
 }
